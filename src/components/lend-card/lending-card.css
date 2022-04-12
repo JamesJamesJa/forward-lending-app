@@ -1,0 +1,197 @@
+.lend-card-container {
+  width: 100%;
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #22242d 100%, #22242d 100%),
+    linear-gradient(
+      0deg,
+      rgba(101, 103, 112, 1) 0%,
+      rgba(255, 255, 255, 1) 37%,
+      rgba(255, 255, 255, 1) 57%,
+      rgba(82, 82, 82, 1) 100%
+    );
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.lend-card-container:hover {
+  width: 100%;
+  padding: 30px;
+
+  margin: -2px;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  border: 3px solid transparent;
+  border-radius: 20px;
+  background: linear-gradient(0deg, #000000 0%, #000000 0%),
+    linear-gradient(
+      90deg,
+      #ff9f9f 0%,
+      #fc5792 32.81%,
+      #ffc657 70.31%,
+      #95fe10 100%
+    );
+
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  -webkit-transform: translateY(-20px);
+  -ms-transform: translateY(-20px);
+  transform: translateY(-20px);
+
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.coin-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coin-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: white;
+}
+
+.coin-logo {
+  height: 60px;
+  width: 60px;
+}
+
+.coin-details-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.apr-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.liquidity-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.apr-liquidity-title-text {
+  margin-bottom: 1rem;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: #a5adcf;
+}
+
+.apr-liquidity-value-text {
+  min-width: 50%;
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(90.04deg, #f2c94c 3.68%, #ebff00 54.19%);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lend-button {
+  height: 50px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;
+  background: linear-gradient(
+    85.7deg,
+    #aa448f 0%,
+    #ff1665 54.13%,
+    #fa6c81 101.89%
+  );
+
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1023px) {
+  .lend-card-container {
+    /* padding: 20px; */
+    padding: 20px 16px;
+  }
+
+  .lend-card-container:hover {
+    padding: 20px 16px;
+  }
+
+  .coin-title-container {
+    column-gap: 3rem;
+  }
+
+  .coin-title {
+    font-size: 20px;
+  }
+
+  .coin-logo {
+    height: 36px;
+    width: 36px;
+  }
+
+  .apr-liquidity-title-text {
+    font-size: 14px;
+  }
+
+  .apr-liquidity-value-text {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .coin-details-container {
+    flex-direction: column;
+  }
+
+  .coin-title-container {
+    column-gap: 6rem;
+  }
+
+  .coin-logo {
+    height: 60px;
+    width: 60px;
+  }
+
+  .apr-container {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .liquidity-container {
+    width: 100%;
+  }
+  .apr-liquidity-title-text {
+    margin-bottom: 0.5rem;
+  }
+}

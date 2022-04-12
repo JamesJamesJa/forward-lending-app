@@ -1,0 +1,158 @@
+.lending-background {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  background-color: #141518;
+
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.lending-container {
+  height: 80%;
+  width: 80%;
+  margin-top: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.details-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 3rem;
+  margin-bottom: 30px;
+}
+
+.title-container {
+  width: 60%;
+}
+
+.title-first-text {
+  background: linear-gradient(
+    85.23deg,
+    #aa448f 0%,
+    #ff1665 19.16%,
+    #fa6c81 37.9%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  font-size: 49px;
+  font-weight: 700;
+  line-height: 60px;
+}
+
+.title-second-text {
+  color: #fff;
+  font-size: 49px;
+  font-weight: 700;
+  line-height: 60px;
+}
+
+.description-container {
+  width: 40%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+}
+
+.lend-card-container-group {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 1rem;
+}
+
+@media only screen and (max-width: 1023px) {
+  .lending-container {
+    width: 82%;
+  }
+  .title-container {
+    width: 50%;
+  }
+
+  .title-first-text {
+    font-size: 39px;
+    line-height: 45px;
+  }
+
+  .title-second-text {
+    font-size: 39px;
+    line-height: 45px;
+  }
+
+  .description-container {
+    width: 50%;
+  }
+
+  .lend-card-container-group {
+    column-gap: 0.5rem;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+@media only screen and (max-width: 767px) {
+  .lending-container {
+    height: 80%;
+    width: 100%;
+    margin-top: 14vh;
+  }
+  .title-container {
+    width: 84%;
+    margin-bottom: 20px;
+  }
+
+  .details-container {
+    flex-direction: column;
+  }
+
+  .title-first-text {
+    font-size: 31px;
+    line-height: 36px;
+  }
+
+  .title-second-text {
+    font-size: 31px;
+    line-height: 36px;
+  }
+
+  .description-container {
+    width: 84%;
+    font-size: 16px;
+  }
+
+  .lend-card-container-group {
+    padding: 30px 1.5rem 0px 1.5rem;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /* padding-right: 3rem; */
+    overflow-x: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .lending-container {
+    width: 74%;
+  }
+}

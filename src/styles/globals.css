@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: "Sofia Pro", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.white {
+  color: white;
+}
+
+.dark-grey {
+  color: #5d6588;
+}
+
+.text-16 {
+  font-size: 16px;
+}
