@@ -3,20 +3,12 @@ import { useWeb3React } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { formatEther } from "@ethersproject/units";
 
-function Dashboard() {
+function Wallet() {
   const { active, account, activate, chainId, library } = useWeb3React();
   const balance = useBalance();
 
-  const [showAccount, setShowAccount] = useState("");
-  const [showBalance, setShowBalance] = useState();
-
   useEffect(() => {
-    // const tempAccount = localStorage.getItem("account");
-    // if (tempAccount) {
-    //   setShowAccount(tempAccount);
     activate(new InjectedConnector({}));
-    // } else {
-    // }
   }, []);
 
   function useBalance() {
@@ -24,25 +16,10 @@ function Dashboard() {
     const [balance, setBalance] = useState();
 
     useEffect(() => {
-      // if (localStorage.getItem("account")) {
-      //   // console.log(localStorage.getItem("account"));
-      //   const jsonTemp = localStorage.getItem("account");
-      //   if (jsonTemp) {
-      //     setShowAccount(JSON.parse(jsonTemp));
-
-      //     // library
-      //     //   .getBalance(jsonTemp)
-      //     //   .then((val: SetStateAction<undefined>) => setBalance(val));
-      //   } else {
-      //     setShowAccount("");
-      //   }
-      // } else
       if (account) {
-        console.log("asdasd");
         library
           .getBalance(account)
           .then((val: SetStateAction<undefined>) => setBalance(val));
-        localStorage.setItem("account", account);
       }
     }, [account, library]);
 
@@ -51,7 +28,10 @@ function Dashboard() {
 
   return (
     <nav className="bg-gray-800">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div
+        className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8"
+        style={{ marginTop: "50px" }}
+      >
         <div className="relative flex items-center justify-between h-16 text-gray-100">
           {active ? (
             <>
@@ -77,11 +57,7 @@ function Dashboard() {
               <button
                 className="h-10 px-5 border border-gray-400 rounded-md"
                 onClick={() => {
-                  // if (showAccount) {
-                  //   // console.log(showAccount, balance);
-                  // } else {
                   activate(new InjectedConnector({}));
-                  // }
                 }}
               >
                 Connect
@@ -94,4 +70,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Wallet;

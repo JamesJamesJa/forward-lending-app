@@ -1,12 +1,21 @@
 import { CoinDetails } from "./types";
 
 import "./lending-card.css";
+import LendModal from "../lend-modal";
 
 interface CoinDetailsProps {
   coin: CoinDetails;
+  isOpenModal: boolean;
+  onOpenModal: () => void;
+  onSelectCoin: (coinId: CoinDetails) => void;
 }
 
-const LendCard: React.FC<CoinDetailsProps> = ({ coin }) => (
+const LendCard: React.FC<CoinDetailsProps> = ({
+  coin,
+  isOpenModal,
+  onOpenModal,
+  onSelectCoin,
+}) => (
   <div className="lend-card-container">
     <div className="coin-title-container">
       <div className="coin-title">{coin.name}</div>
@@ -26,7 +35,15 @@ const LendCard: React.FC<CoinDetailsProps> = ({ coin }) => (
         <div className="apr-liquidity-value-text">{coin.liquidity}</div>
       </div>
     </div>
-    <div className="lend-button">Lend</div>
+    <div
+      className="lend-button"
+      onClick={() => {
+        onOpenModal();
+        onSelectCoin(coin);
+      }}
+    >
+      Lend
+    </div>
   </div>
 );
 

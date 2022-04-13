@@ -4,4 +4,5 @@ export interface CoinDetails {
   logoPath: string;
   apr: string;
   liquidity: string;
+  collateralized: string;
 }

@@ -3,7 +3,6 @@
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
-  z-index: 1;
   position: absolute;
   background-color: #141518;
   display: flex;
@@ -134,13 +133,29 @@
   cursor: pointer;
 }
 
-.status-point {
+.connect-wallet {
+  padding: 0px 20px;
+}
+
+.status-point-green {
   height: 6px;
   width: 6px;
 
   border: 1px solid transparent;
   border-radius: 26px;
   background: linear-gradient(90deg, #70ff00 100%, #70ff00 100%),
+    linear-gradient(106.79deg, #fff -62.32%, #587ca5 190.73%);
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+}
+
+.status-point-red {
+  height: 6px;
+  width: 6px;
+
+  border: 1px solid transparent;
+  border-radius: 26px;
+  background: linear-gradient(90deg, #ff1500 100%, #ff1500 100%),
     linear-gradient(106.79deg, #fff -62.32%, #587ca5 190.73%);
   background-clip: padding-box, border-box;
   background-origin: padding-box, border-box;
