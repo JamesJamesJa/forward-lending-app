@@ -1,14 +1,18 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { lendPercentList } from "../../store/lend-percent";
+import { coinDetails } from "../../store/coin-details";
 import { CoinDetails } from "../lend-card/types";
 import "./lending-modal.css";
 import WarningPopUp from "../warning-pop-up/index";
+import OptionList from "../option-list";
 
 interface ModalProps {
   isOpenModal: boolean;
   onOpenModal: () => void;
   coin: CoinDetails | undefined;
   busdBalance: number;
+  bnbBalance: number;
+  usdtBalance: number;
 }
 
 const LendModal: React.FC<ModalProps> = ({
@@ -16,10 +20,14 @@ const LendModal: React.FC<ModalProps> = ({
   onOpenModal,
   coin,
   busdBalance,
+  bnbBalance,
+  usdtBalance,
 }) => {
   const [lendAmount, setLendAmount] = useState("0");
   const [percentSelect, setPercentSelect] = useState(0);
   const [isHoverWarning, setIsHoverWarning] = useState(false);
+  const [isOpenOption, setIsOpenOption] = useState(false);
+  const [coinSelected, setCoinSelected] = useState(coinDetails[1]);
 
   const onLendAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
     setLendAmount(event.target.value);
@@ -32,11 +40,6 @@ const LendModal: React.FC<ModalProps> = ({
       setLendAmount("0");
     } else {
       setPercentSelect(percentId);
-      setLendAmount(
-        Intl.NumberFormat("en-IN", {
-          maximumSignificantDigits: 3,
-        }).format(busdBalance * (percentId * 0.25))
-      );
     }
   };
 
@@ -44,13 +47,29 @@ const LendModal: React.FC<ModalProps> = ({
     setIsHoverWarning(!isHoverWarning);
   };
 
+  const onOpenOption = () => {
+    setIsOpenOption(!isOpenOption);
+  };
+
+  const getLendBalance = () => {
+    if (coinSelected.id === 1) {
+      return bnbBalance;
+    } else if (coinSelected.id === 2) {
+      return busdBalance;
+    } else if (coinSelected.id === 3) {
+      return usdtBalance;
+    } else {
+      return 0;
+    }
+  };
+
   useEffect(() => {
-    setLendAmount(
-      Intl.NumberFormat("en-IN", {
-        maximumSignificantDigits: 3,
-      }).format(busdBalance * (percentSelect * 0.25))
-    );
-  }, [busdBalance]);
+    if (getLendBalance() * (percentSelect * 0.25) < 0.01) {
+      setLendAmount("0");
+    } else {
+      setLendAmount((getLendBalance() * (percentSelect * 0.25)).toFixed(2));
+    }
+  }, [bnbBalance, busdBalance, usdtBalance, percentSelect, coinSelected]);
 
   return isOpenModal ? (
     <div>
@@ -90,13 +109,18 @@ const LendModal: React.FC<ModalProps> = ({
                     value={lendAmount}
                     onChange={onLendAmountChange}
                   />
-                  <div className="lend-coin-type-container">
+                  <div
+                    className="lend-coin-type-container"
+                    onClick={onOpenOption}
+                  >
                     <img
-                      src={`coin-logo/busd-logo.svg`}
+                      src={`coin-logo/${coinSelected.logoPath}.svg`}
                       alt={`coin-logo/busd-logo`}
                       className="lend-coin-type-logo"
                     />
-                    <div className="lend-coin-type-name">BUSD</div>
+                    <div className="lend-coin-type-name">
+                      {coinSelected.name}
+                    </div>
                     <img
                       src="basic-icon/arrow-down-icon.svg"
                       alt="arrow-down-icon"
@@ -107,10 +131,10 @@ const LendModal: React.FC<ModalProps> = ({
                 <div className="lend-balance-container">
                   <div className="lend-balance-title">Balance:&nbsp;</div>
                   <div className="lend-balance-value">
-                    {Intl.NumberFormat("en-IN", {
-                      maximumSignificantDigits: 3,
-                    }).format(busdBalance)}{" "}
-                    BUSD
+                    {Intl.NumberFormat().format(
+                      parseFloat(getLendBalance().toFixed(2))
+                    )}
+                    &nbsp; {coinSelected.name}
                   </div>
                 </div>
                 <div className="balance-percent-container">
@@ -142,19 +166,25 @@ const LendModal: React.FC<ModalProps> = ({
                     </div>
                     <div className="colla-gas-asset-sub-container">
                       <div className="colla-gas-asset-title">Asset</div>
-                      <div className="colla-gas-asset-value">BUSD</div>
+                      <div className="colla-gas-asset-value">
+                        {coinSelected.name}
+                      </div>
                     </div>
                   </div>
                   <div className="gas-container">
                     <div className="colla-gas-asset-title">Gas fee</div>
                     <div className="gas-value">insufficient fund for gas</div>
-                    <div className="gas-value-enough">0.001&nbsp;BUSD</div>
+                    <div className="gas-value-enough">
+                      0.001&nbsp;{coinSelected.name}
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="warning-confirm-container">
                 <div className="warning-container">
-                  <div className="warning-text">You will receive iBUSD</div>
+                  <div className="warning-text">
+                    You will receive i{coinSelected.name}
+                  </div>
                   <img
                     src="basic-icon/warning-icon.svg"
                     alt="warning-icon"
@@ -175,6 +205,13 @@ const LendModal: React.FC<ModalProps> = ({
       </div>
 
       <WarningPopUp isHoverWarning={isHoverWarning} />
+
+      <OptionList
+        isOpenOption={isOpenOption}
+        onOpenOption={onOpenOption}
+        coinSelected={coinSelected}
+        setCoinSelected={setCoinSelected}
+      />
     </div>
   ) : (
     <div></div>

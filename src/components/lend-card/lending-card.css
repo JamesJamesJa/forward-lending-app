@@ -140,7 +140,6 @@
 
 @media only screen and (max-width: 1023px) {
   .lend-card-container {
-    /* padding: 20px; */
     padding: 20px 16px;
   }
 
@@ -194,4 +193,13 @@
   .apr-liquidity-title-text {
     margin-bottom: 0.5rem;
   }
+}
+
+@media only screen and (max-height: 820px) and (max-width: 425px) {
+  .lend-card-container {
+    height: 263px;
+  }
+}
+
+@media only screen and (max-height: 666px) and (max-width: 425px) {
 }

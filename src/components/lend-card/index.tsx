@@ -1,7 +1,6 @@
 import { CoinDetails } from "./types";
 
 import "./lending-card.css";
-import LendModal from "../lend-modal";
 
 interface CoinDetailsProps {
   coin: CoinDetails;

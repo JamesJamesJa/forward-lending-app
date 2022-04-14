@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import "./../styles/lending.css";
 
@@ -9,9 +9,15 @@ import { CoinDetails } from "../components/lend-card/types";
 
 interface LendingProps {
   busdBalance: number;
+  bnbBalance: number;
+  usdtBalance: number;
 }
 
-const Lending: React.FC<LendingProps> = ({ busdBalance }) => {
+const Lending: React.FC<LendingProps> = ({
+  busdBalance,
+  bnbBalance,
+  usdtBalance,
+}) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [coinSelect, setCoinSelect] = useState<CoinDetails>();
 
@@ -22,7 +28,6 @@ const Lending: React.FC<LendingProps> = ({ busdBalance }) => {
   const onSelectCoin = (coin: CoinDetails) => {
     setCoinSelect(coin);
   };
-
 
   return (
     <div>
@@ -67,6 +72,8 @@ const Lending: React.FC<LendingProps> = ({ busdBalance }) => {
         onOpenModal={onOpenModal}
         coin={coinSelect}
         busdBalance={busdBalance}
+        bnbBalance={bnbBalance}
+        usdtBalance={usdtBalance}
       />
     </div>
   );
